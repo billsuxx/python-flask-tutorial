@@ -1,0 +1,36 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - PBlog</title>
+        {% else %}
+        <title>Welcome to my PBlog</title>
+        {% endif %}
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>PBlog</h1>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('index') }}">Home</a>
+                            <a href="{{ url_for('login') }}">Login</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <hr>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>
